@@ -12,3 +12,18 @@ function makeSchema() {
     }
   }
 }
+
+export default ({ validateSchema }) => {
+  return function makeCategory(input = {}) {
+    const schema = makeSchema()
+
+    const validated = validateSchema(schema, input)
+
+    return Object.freeze({
+      getName: () => validated.name,
+      getType: () => validated.type,
+
+      json: () => validated
+    })
+  }
+}

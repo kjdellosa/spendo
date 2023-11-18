@@ -9,3 +9,21 @@ function makeSchema() {
     }
   }
 }
+
+export default ({ validateSchema }) => {
+  return function makeTransaction(input = {}) {
+    const schema = makeSchema()
+
+    const validated = validateSchema(schema, input)
+
+    return Object.freeze({
+      getAmount: () => validated.amount,
+      getDate: () => validated.date,
+      getDescription: () => validated.description,
+      getCategoryId: () => validated.category_id,
+
+      json: () => validated
+    })
+
+  }
+}
