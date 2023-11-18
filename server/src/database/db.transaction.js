@@ -6,6 +6,7 @@ const makeTransactionDb = ({ makeDb }) => {
     saveRecord,
     updateRecordById,
     deleteRecordById,
+    listRecords,
     listRecordsByCategoryId
   })
 
@@ -22,6 +23,42 @@ const makeTransactionDb = ({ makeDb }) => {
         id
       }
     })
+  }
+
+  async function listRecords({
+    limit = 10,
+    page = 1,
+    orderBy = [],
+    filter = {}
+  }) {
+    if (limit < 0 || page < 0 || page > 50) {
+      throw new Error(ERROR.DATABASE.DB_INVALID_REQUEST, {
+        cause: 'Invalid limit or page'
+      })
+    }
+    const db = await makeDb()
+    const [results, count] = await db.$transaction([
+      db.transaction.findMany({
+        skip: limit * (page - 1),
+        take: limit,
+        where: {
+          ...filter
+        },
+        orderBy: [...orderBy],
+      }),
+      db.transaction.count({
+        where: {
+          ...filter
+        }
+      })
+    ])
+
+    return {
+      list: results,
+      total: count,
+      page,
+      limit
+    }
   }
 
   async function listRecordsByCategoryId(
