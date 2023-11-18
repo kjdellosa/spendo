@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  spendo-server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    container_name: spendo-server
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    env_file:
+      - ./server/.env
+    ports:
+      - 8000:8000
+    depends_on:
+      - spendo-db
+
+  spendo-client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    container_name: spendo-client
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    # env_file:
+    #   - ./client/.env
+    ports:
+      - 3000:3000
+
+  spendo-db:
+    image: postgres:14-alpine
+    container_name: spendo-db
+    ports:
+      - 6500:5432
+    environment:
+      POSTGRES_DB: spendo
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    volumes:
+      - spendo-db-volume:/var/lib/postgresql/data
+      - ./data:/docker-entrypoint-initdb.d
+
+volumes:
+  spendo-db-volume:
