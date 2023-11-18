@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 import makeCategoryDb from './db.category'
 import makeTransactionDb from './db.transaction'
 

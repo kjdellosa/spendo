@@ -1,4 +1,4 @@
-import { ERROR } from '@constants/index'
+import { ERROR } from '../constants'
 
 const makeTransactionDb = ({ makeDb }) => {
   return Object.freeze({
