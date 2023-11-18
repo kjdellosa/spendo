@@ -12,30 +12,28 @@ datasource db {
   extensions = []
 }
 
-enum TransactionType {
+enum CategoryType {
   INCOME
   EXPENSE
 }
 
 model Category {
-  id          String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  name        String @unique
-  description String
+  id   String       @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name String       @unique
+  type CategoryType
 
-  created_at DateTime  @default(now()) @db.Timestamptz(3)
-  updated_at DateTime? @updatedAt @db.Timestamptz(3)
-
+  created_at  DateTime      @default(now()) @db.Timestamptz(3)
+  updated_at  DateTime?     @updatedAt @db.Timestamptz(3)
   Transaction Transaction[]
 
   @@map("category")
 }
 
 model Transaction {
-  id          String          @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  id          String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   amount      Float
   date        DateTime
   description String?
-  type        TransactionType
 
   created_at DateTime  @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt @db.Timestamptz(3)
