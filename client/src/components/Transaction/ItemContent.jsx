@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export const TransactionListItemContent = ({ item }) => {
   const { amount, date, description, categoryId } = item
 

@@ -1,5 +1,6 @@
 
 import { List } from 'antd'
+import { TransactionListItem } from './TransactionListItem'
 
 export function TransactionList({
   list,
@@ -12,7 +13,7 @@ export function TransactionList({
       itemLayout='horizontal'
       dataSource={list.transactions}
       renderItem={(item) => (
-        <TransactionList
+        <TransactionListItem
           item={item}
           onEditClick={onEditClick}
           onDeleteConfirm={onDeleteConfirm}
