@@ -1,4 +1,4 @@
-import { HTTP, ERROR } from '../constants'
+import { HTTP, ERROR } from '../constants/index.js'
 
 const getAPIErrorStatusCode = (errorCode) => {
   let statusCode = HTTP.RESPONSE.OK

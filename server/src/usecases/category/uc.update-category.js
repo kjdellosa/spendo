@@ -1,4 +1,4 @@
-import entities from '../../entities'
+import entities from '../../entities/index.js'
 
 export default function makeUpdateCategory({ categoryDb }) {
   return async function ucUpdateCategory(id, category) {

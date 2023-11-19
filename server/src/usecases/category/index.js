@@ -1,10 +1,10 @@
-import database from '../../database'
+import database from '../../database/index.js'
 
-import makeGetCategory from './uc.get-category'
-import makeCreateCategory from './uc.create-category'
-import makeUpdateCategory from './uc.update-category'
-import makeDeleteCategory from './uc.delete-category'
-import makeListCategory from './uc.list-category'
+import makeGetCategory from './uc.get-category.js'
+import makeCreateCategory from './uc.create-category.js'
+import makeUpdateCategory from './uc.update-category.js'
+import makeDeleteCategory from './uc.delete-category.js'
+import makeListCategory from './uc.list-category.js'
 
 const ucGetCategory = makeGetCategory({ categoryDb: database.categoryDb })
 const ucCreateCategory = makeCreateCategory({ categoryDb: database.categoryDb })

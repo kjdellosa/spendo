@@ -1,8 +1,8 @@
 import Ajv from 'ajv'
 const ajv = new Ajv()
 
-import makeBuildTransaction from './transaction'
-import makeBuildCategory from './category'
+import makeBuildTransaction from './transaction.js'
+import makeBuildCategory from './category.js'
 
 function validateSchema(schema, entity, data) {
   let validate = ajv.getSchema(entity)

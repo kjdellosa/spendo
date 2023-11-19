@@ -1,4 +1,4 @@
-import ERROR from './error'
-import HTTP from './http'
+import ERROR from './error.js'
+import HTTP from './http.js'
 
 export { ERROR, HTTP }

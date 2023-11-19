@@ -1,4 +1,4 @@
-import { HTTP } from '../../constants'
+import { HTTP } from '../../constants/index.js'
 
 export default function makeCtrlListCategory({
   listCategoryUsecase

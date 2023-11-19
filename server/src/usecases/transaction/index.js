@@ -1,11 +1,11 @@
-import database from '../../database'
+import database from '../../database/index.js'
 
-import makeGetTransaction from './uc.get-transaction'
-import makeCreateTransaction from './uc.create-transaction'
-import makeUpdateTransaction from './uc.update-transaction'
-import makeDeleteTransaction from './uc.delete-transaction'
-import makeListTransaction from './uc.list-transaction'
-import makeListTransactionByCategory from './uc.list-transaction-by-category'
+import makeGetTransaction from './uc.get-transaction.js'
+import makeCreateTransaction from './uc.create-transaction.js'
+import makeUpdateTransaction from './uc.update-transaction.js'
+import makeDeleteTransaction from './uc.delete-transaction.js'
+import makeListTransaction from './uc.list-transaction.js'
+import makeListTransactionByCategory from './uc.list-transaction-by-category.js'
 
 const ucGetTransaction = makeGetTransaction({ transactionDb: database.transactionDb })
 const ucCreateTransaction = makeCreateTransaction({ transactionDb: database.transactionDb })

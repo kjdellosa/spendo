@@ -1,6 +1,5 @@
 export default function makeListTransaction({ transactionDb }) {
   return async function ucListTransaction(
-    id,
     { limit = 10, page = 1, orderBy = [], filter = {} } = {}
   ) {
     const request = {
@@ -10,7 +9,7 @@ export default function makeListTransaction({ transactionDb }) {
       filter
     }
 
-    const response = await transactionDb.listRecords(id, request)
+    const response = await transactionDb.listRecords(request)
     return response
   }
 }

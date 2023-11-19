@@ -1,4 +1,4 @@
-import { ERROR } from '../../constants'
+import { ERROR } from '../../constants/index.js'
 
 export default function makeGetTransaction({ transactionDb }) {
   return async function ucGetTransaction({ id }) {

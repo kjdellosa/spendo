@@ -1,4 +1,4 @@
-import { ERROR } from '../constants'
+import { ERROR } from '../constants/index.js'
 
 const makeCategoryDb = ({ makeDb }) => {
   return Object.freeze({

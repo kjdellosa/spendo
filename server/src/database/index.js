@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
-import makeCategoryDb from './db.category'
-import makeTransactionDb from './db.transaction'
+import makeCategoryDb from './db.category.js'
+import makeTransactionDb from './db.transaction.js'
 
 let client = null
 

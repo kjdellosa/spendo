@@ -1,16 +1,10 @@
 import express from 'express'
-import dotenv from 'dotenv'
 import cors from 'cors'
 import helmet from 'helmet'
 import qs from 'qs'
+import buildRoutes from './routes/index.js'
 
-if (process.env.NODE_ENV !== 'production') {
-  // eslint-disable-next-line global-require
-  const dotEnv = dotenv.config()
-  if (dotEnv.error) {
-    throw dotEnv.error
-  }
-}
+const routes = buildRoutes()
 
 const app = express()
 const port = process.env.PORT || 8080
@@ -27,6 +21,8 @@ app.use((req, res, next) => {
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+app.use(routes)
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`)

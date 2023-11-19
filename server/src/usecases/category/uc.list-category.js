@@ -1,6 +1,5 @@
 export default function makeListCategory({ categoryDb }) {
   return async function ucListCategory(
-    id,
     { limit = 10, page = 1, orderBy = [], filter = {} } = {}
   ) {
     const request = {
@@ -10,7 +9,7 @@ export default function makeListCategory({ categoryDb }) {
       filter
     }
 
-    const response = await categoryDb.listRecords(id, request)
+    const response = await categoryDb.listRecords(request)
     return response
   }
 }

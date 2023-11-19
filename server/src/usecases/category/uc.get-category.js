@@ -1,4 +1,4 @@
-import { ERROR } from '../../constants'
+import { ERROR } from '../../constants/index.js'
 
 export default function makeGetCategory({ categoryDb }) {
   return async function ucGetCategory({ id }) {

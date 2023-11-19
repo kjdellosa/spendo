@@ -1,6 +1,6 @@
-import { httpErrorMapper } from '../utils'
+import { httpErrorMapper } from '../utils/index.js'
 import { Prisma } from '@prisma/client'
-import { ERROR } from '../constants/index'
+import { ERROR } from '../constants/index.js'
 
 export default function createExpressAdapter(controller) {
   return (request, response) => {

@@ -1,3 +1,3 @@
-import httpErrorMapper from './error-mapper'
+import httpErrorMapper from './error-mapper.js'
 
 export { httpErrorMapper }

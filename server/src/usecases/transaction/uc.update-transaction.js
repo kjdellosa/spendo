@@ -1,4 +1,4 @@
-import entities from '../../entities'
+import entities from '../../entities/index.js'
 
 export default function makeUpdateTransaction({ transactionDb }) {
   return async function ucUpdateTransaction(id, transaction) {

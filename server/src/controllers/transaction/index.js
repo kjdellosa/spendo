@@ -1,11 +1,11 @@
-import usecases from '../../usecases'
+import usecases from '../../usecases/index.js'
 
-import makeCtrlCreateTransaction from './ctrl.create-transaction'
-import makeCtrlGetTransaction from './ctrl.get-transaction'
-import makeCtrlListTransaction from './ctrl.list-transaction'
-import makeCtrlListTransactionByCategory from './ctrl.list-transaction-by-category'
-import makeCtrlUpdateTransaction from './ctrl.update-transaction'
-import makeCtrlDeleteTransaction from './ctrl.delete-transaction'
+import makeCtrlCreateTransaction from './ctrl.create-transaction.js'
+import makeCtrlGetTransaction from './ctrl.get-transaction.js'
+import makeCtrlListTransaction from './ctrl.list-transaction.js'
+import makeCtrlListTransactionByCategory from './ctrl.list-transaction-by-category.js'
+import makeCtrlUpdateTransaction from './ctrl.update-transaction.js'
+import makeCtrlDeleteTransaction from './ctrl.delete-transaction.js'
 
 const ucs = usecases.UcsTransaction
 
@@ -13,7 +13,7 @@ const ctrlCreateTransaction = makeCtrlCreateTransaction({ createTransactionUseca
 const ctrlGetTransaction = makeCtrlGetTransaction({ getTransactionUsecase: ucs.ucGetTransaction })
 const ctrlListTransaction = makeCtrlListTransaction({ listTransactionUsecase: ucs.ucListTransaction })
 const ctrlListTransactionByCategory = makeCtrlListTransactionByCategory({ listTransactionByCategoryUsecase: ucs.ucListTransactionByCategory })
-const crlUpdateTransaction = makeCtrlUpdateTransaction({ updateTransactionUsecase: ucs.ucUpdateTransaction })
+const ctrlUpdateTransaction = makeCtrlUpdateTransaction({ updateTransactionUsecase: ucs.ucUpdateTransaction })
 const ctrlDeleteTransaction = makeCtrlDeleteTransaction({ deleteTransactionUsecase: ucs.ucDeleteTransaction })
 
 export default {
@@ -21,6 +21,6 @@ export default {
   ctrlGetTransaction,
   ctrlListTransaction,
   ctrlListTransactionByCategory,
-  crlUpdateTransaction,
+  ctrlUpdateTransaction,
   ctrlDeleteTransaction
 }
