@@ -38,7 +38,7 @@ const makeCategoryDb = ({ makeDb }) => {
     }
     const db = await makeDb()
     const [results, count] = await db.$transaction([
-      db.transaction.findMany({
+      db.category.findMany({
         skip: limit * (page - 1),
         take: limit,
         where: {
@@ -46,7 +46,7 @@ const makeCategoryDb = ({ makeDb }) => {
         },
         orderBy: [...orderBy],
       }),
-      db.transaction.count({
+      db.category.count({
         where: {
           ...filter
         }
