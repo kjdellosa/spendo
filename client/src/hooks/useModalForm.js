@@ -17,7 +17,8 @@ export const useModalForm = () => {
       form.resetFields()
     } else {
       form.setFieldsValue({
-        ...selectedTransaction
+        ...selectedTransaction,
+        date: moment(selectedTransaction.date)
       })
     }
   }, [selectedTransaction])
@@ -43,13 +44,13 @@ export const useModalForm = () => {
     if (selectedTransaction === undefined) {
       const payload = {
         ...transaction,
+        date: moment(transaction.date).format()
       }
-
       await addTransaction(payload)
     } else {
       const payload = {
-        ...selectedTransaction,
-        ...transaction
+        ...transaction,
+        date: moment(transaction.date).format()
       }
 
       await editTransaction(payload)

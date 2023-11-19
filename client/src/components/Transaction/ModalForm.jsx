@@ -19,12 +19,10 @@ export const TransactionModalForm = ({
 }) => {
   const { list } = useCategory()
 
-  console.log(list)
-
   return (
     <Modal
       forceRender
-      title='Add Transaction'
+      title='Transaction'
       onOk={onSubmit}
       onCancel={onCancel}
       open={isOpen}
