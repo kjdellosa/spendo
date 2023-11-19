@@ -1,5 +1,8 @@
 import Ajv from 'ajv'
+import * as addFormats from 'ajv-formats'
+
 const ajv = new Ajv()
+addFormats.default(ajv)
 
 import makeBuildTransaction from './transaction.js'
 import makeBuildCategory from './category.js'

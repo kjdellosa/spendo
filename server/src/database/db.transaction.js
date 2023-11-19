@@ -45,6 +45,9 @@ const makeTransactionDb = ({ makeDb }) => {
           ...filter
         },
         orderBy: [...orderBy],
+        include: {
+          category: true
+        }
       }),
       db.transaction.count({
         where: {
@@ -81,7 +84,10 @@ const makeTransactionDb = ({ makeDb }) => {
           ...filter,
           category_id: categoryId
         },
-        orderBy: [...orderBy]
+        orderBy: [...orderBy],
+        include: {
+          category: true
+        }
       }),
       db.transaction.count({
         where: {

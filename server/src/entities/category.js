@@ -17,13 +17,13 @@ export default ({ validateSchema }) => {
   return function makeCategory(input = {}) {
     const schema = makeSchema()
 
-    const validated = validateSchema(schema, input)
+    validateSchema(schema, 'category', input)
 
     return Object.freeze({
-      getName: () => validated.name,
-      getType: () => validated.type,
+      getName: () => input.name,
+      getType: () => input.type,
 
-      json: () => validated
+      json: () => input
     })
   }
 }

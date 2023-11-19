@@ -17,20 +17,22 @@ async function seed() {
   });
 
   // Retrieve the created categories
-  const data = await prisma.category.findMany();
-
-  // Extract category ids
-  const categoryIds = data.map((category) => category.id);
-
+  const categories = await prisma.category.findMany();
 
   // Create 10 transactions for each category
-  for (const categoryId of categoryIds) {
-    const transactions = Array.from({ length: 10 }, (_, index) => ({
-      amount: +(Math.random() * 1000).toFixed(2),
-      date: new Date(),
-      description: `Transaction ${index + 1} for category ${categoryId}`,
-      category_id: categoryId,
-    }));
+  for (const category of categories) {
+    const transactions = Array.from({ length: 10 }, (_, index) => {
+      const date = new Date();
+      // Set the date to a random day within the last 5 days
+      date.setDate(date.getDate() - Math.floor(Math.random() * 5) + 1);
+
+      return {
+        amount: +(Math.random() * 1000).toFixed(2), // Generate random float with two decimal places
+        date,
+        description: `Transaction ${index + 1} for category ${category.name}`,
+        category_id: category.id,
+      };
+    });
 
     await prisma.transaction.createMany({
       data: transactions,

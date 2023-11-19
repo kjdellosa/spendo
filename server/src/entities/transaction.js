@@ -3,10 +3,12 @@ function makeSchema() {
     type: 'object',
     properties: {
       amount: { type: 'number' },
-      date: { type: 'string', format: 'date' },
+      date: { type: 'string', format: 'date-time' },
       description: { type: ['string', 'null'], default: null },
       category_id: { type: 'string', format: 'uuid' }
-    }
+    },
+    required: ['amount', 'date', 'category_id'],
+    additionalProperties: false
   }
 }
 
@@ -14,16 +16,15 @@ export default ({ validateSchema }) => {
   return function makeTransaction(input = {}) {
     const schema = makeSchema()
 
-    const validated = validateSchema(schema, input)
+    validateSchema(schema, 'transaction', input)
 
     return Object.freeze({
-      getAmount: () => validated.amount,
-      getDate: () => validated.date,
-      getDescription: () => validated.description,
-      getCategoryId: () => validated.category_id,
+      getAmount: () => input.amount,
+      getDate: () => input.date,
+      getDescription: () => input.description,
+      getCategoryId: () => input.category_id,
 
-      json: () => validated
+      json: () => input
     })
-
   }
 }
