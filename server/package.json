@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/index.js",
     "migrate": "prisma migrate dev",
-    "build": "prisma generate"
+    "seed": "prisma db seed",
+    "build": "prisma generate",
+    "start": "node src/index.js"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
