@@ -4,7 +4,7 @@ import moment from 'moment'
 // * Hooks
 import { useTransactionMutations } from './useTransaction'
 
-export const useModalForm = () => {
+export const useTransactionForm = () => {
   const [form] = Form.useForm()
   const [isOpen, setIsOpen] = useState(false)
   const [selectedTransaction, setSelectedTransaction] = useState()

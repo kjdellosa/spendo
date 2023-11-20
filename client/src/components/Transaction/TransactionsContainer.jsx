@@ -1,4 +1,4 @@
-import { useModalForm } from '@/hooks/useModalForm'
+import { useTransactionForm } from '@/hooks/useTransactionForm'
 import { TransactionList } from './TransactionsList'
 import { useTransactions } from '@/hooks/useTransaction'
 import { TransactionListHeader } from './ListHeader'
@@ -6,7 +6,7 @@ import { TransactionModalForm } from './ModalForm'
 
 export default function TransactionsContainer() {
   const { list } = useTransactions()
-  const { form } = useModalForm()
+  const { form } = useTransactionForm()
 
   return (
     <div className='flex justify-center mt-5'>

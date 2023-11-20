@@ -57,7 +57,7 @@ export const useCategoryMutations = (categoryId) => {
     mutationFn: editCategoryFn,
     onSuccess: async () => {
       message.success('Category edited successfully!')
-      await queryClient.invalidateQueries({ queryKey: ['category'] })
+      await queryClient.invalidateQueries()
     }
   })
 
@@ -65,7 +65,7 @@ export const useCategoryMutations = (categoryId) => {
     mutationFn: deleteCategoryFn,
     onSuccess: async () => {
       message.success('Category deleted successfully!')
-      await queryClient.invalidateQueries({ queryKey: ['category'] })
+      await queryClient.invalidateQueries()
     }
   })
 
