@@ -1,6 +1,43 @@
 
-import { List } from 'antd'
-import { TransactionListItem } from './TransactionListItem'
+import { Space, Table } from 'antd'
+import moment from 'moment'
+import { DeleteButton, EditButton } from './ItemActions'
+
+const makeColumns = ({ onEditClick, onDeleteConfirm }) => {
+  return [
+    {
+      title: 'Category',
+      dataIndex: ["category", "name"]
+    },
+    {
+      title: 'Description',
+      dataIndex: 'description',
+    },
+    {
+      title: 'Date',
+      dataIndex: 'date',
+      render: (date) => {
+        return moment(date).format('MMM. D, YYYY')
+      },
+      sorter: (a, b) => moment(a).isBefore(b) ? -1 : 1
+    },
+    {
+      title: 'Amount',
+      dataIndex: 'amount',
+    },
+    {
+      title: 'Action',
+      render: (item) => {
+        return (
+          <Space>
+            <EditButton key='edit' onClick={() => { onEditClick(item) }} />
+            <DeleteButton key='delete' onDeleteConfirm={() => { onDeleteConfirm(item.id) }} />
+          </Space>
+        )
+      }
+    }
+  ]
+}
 
 export function TransactionList({
   list,
@@ -8,19 +45,10 @@ export function TransactionList({
   onDeleteConfirm
 }) {
   return (
-    <List
-      loading={list.isLoading}
-      itemLayout='horizontal'
+    <Table
+      columns={makeColumns({ onEditClick, onDeleteConfirm })}
       dataSource={list.transactions}
-      renderItem={(item) => (
-        <TransactionListItem
-          item={item}
-          onEditClick={onEditClick}
-          onDeleteConfirm={onDeleteConfirm}
-        />
-      )}
       bordered
-      className='overflow-auto h-[60vh]'
     />
   )
 }

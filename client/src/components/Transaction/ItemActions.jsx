@@ -8,6 +8,7 @@ export const EditButton = ({ onClick }) => {
         onClick={onClick}
         icon={<EditOutlined />}
         shape='circle'
+        size='small'
       />
     </Tooltip>
   )
@@ -27,6 +28,7 @@ export const DeleteButton = ({ onDeleteConfirm }) => {
         shape='circle'
         type='primary'
         danger
+        size='small'
       />
     </Popconfirm>
   )

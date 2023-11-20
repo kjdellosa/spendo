@@ -9,7 +9,7 @@ const url = `${endpoint}/transaction`
 
 export const useTransactions = () => {
   async function getTransactions() {
-    const { data: response } = await axios.get(url)
+    const { data: response } = await axios.get(`${url}?limit=100&order_by='date'`)
 
     return response.data
   }
