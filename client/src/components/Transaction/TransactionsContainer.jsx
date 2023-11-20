@@ -9,7 +9,7 @@ export default function TransactionsContainer() {
   const { form } = useModalForm()
 
   return (
-    <div className='flex justify-center mt-10'>
+    <div className='flex justify-center mt-5'>
       <div className='lg:w-2/3 md:w-3/4 w-full space-y-3 p-4'>
         <TransactionModalForm
           form={form.instance}

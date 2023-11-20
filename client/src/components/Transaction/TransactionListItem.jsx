@@ -17,10 +17,9 @@ export function TransactionListItem({
           <DeleteButton key='delete' onDeleteConfirm={() => { onDeleteConfirm(item.id) }} />
         ]}
       >
-        <List.Item.Meta
-          title={<span className='font-bold'>{item.description}</span>}
-          description={<TransactionListItemContent item={item} />}
-        />
+        <span className='flex-grow'>
+          <TransactionListItemContent item={item} />
+        </span>
       </List.Item>
     </div>
   )

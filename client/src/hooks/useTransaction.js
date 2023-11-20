@@ -1,6 +1,7 @@
+import { useCallback, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
-
+import moment from 'moment'
 import { message } from 'antd'
 
 const endpoint = `http://localhost:8080/api`
@@ -18,10 +19,29 @@ export const useTransactions = () => {
     queryFn: getTransactions
   })
 
+  const [filterValue, setFilterValue] = useState('')
+
+  const onFilter = value => {
+    setFilterValue(value)
+  }
+
+  const filterByMonth = useCallback((values = []) => {
+    if (!filterValue || filterValue === '') return values
+
+    return values.filter(({ date }) => {
+      const month = moment(date).month()
+      return month === filterValue
+    })
+  }, [filterValue])
+
   return {
     list: {
-      transactions: transactions.list,
+      transactions: filterByMonth(transactions.list),
       isLoading
+    },
+    filterByMonth: {
+      value: filterValue,
+      onFilter
     }
   }
 }
