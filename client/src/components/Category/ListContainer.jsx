@@ -20,7 +20,7 @@ export default function ListContainer() {
           onSubmit={form.onSubmit}
           isLoading={form.isLoading}
         />
-        <ListHeader onClick={form.onAddClick} title={'Category'} buttonLabel={'Add category'} />
+        <ListHeader onClick={form.onAddClick} title={'Category'} buttonLabel={'Add Category'} />
         <DataList
           list={list}
           onEditClick={form.onEditClick}

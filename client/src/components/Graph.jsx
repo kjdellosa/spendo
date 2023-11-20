@@ -1,5 +1,5 @@
 import { useTransactions } from "@/hooks/useTransaction"
-import { Select } from "antd"
+import { Select, Typography } from "antd"
 import moment from "moment"
 import Chart from "react-google-charts"
 
@@ -9,9 +9,13 @@ function aggregateExpenses(expenses) {
     return grouped
   }, {})
 
-  return Object.entries(result).map(
+  const aggregated = Object.entries(result).map(
     ([category, amounts]) => [category, amounts.reduce((sum, amount) => sum + amount, 0)]
   )
+
+  const totalAmount = expenses.reduce((sum, [, amount]) => sum + amount, 0);
+
+  return { aggregated, totalAmount }
 }
 
 const MONTHS = {}
@@ -33,18 +37,20 @@ export const Graph = () => {
   const { list, filterByMonth } = useTransactions()
 
   const data = list?.transactions?.map(t => ([t.category.name, t.amount])) || []
-  const aggregated = aggregateExpenses(data)
+  const { aggregated, totalAmount } = aggregateExpenses(data)
   aggregated.unshift(['Category', 'Amount'])
 
   return (
-    <main className='flex justify-center'>
+    <div className='flex justify-center'>
       <div className='lg:w-2/3 md:w-3/4 w-full space-y-3 p-4'>
         <MonthFilter filter={filterByMonth} />
         <Chart chartType="PieChart"
           data={aggregated}
           width={"100%"}
-          height={"400px"} />
+          height={"400px"}
+        />
+        <Typography.Text strong>Total: {totalAmount}</Typography.Text>
       </div>
-    </main>
+    </div>
   )
 }

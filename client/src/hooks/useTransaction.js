@@ -26,7 +26,7 @@ export const useTransactions = () => {
   }
 
   const filterByMonth = useCallback((values = []) => {
-    if (!filterValue || filterValue === '') return values
+    if (filterValue == undefined || filterValue == null || filterValue === '') return values
 
     return values.filter(({ date }) => {
       const month = moment(date).month()
