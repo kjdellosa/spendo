@@ -39,7 +39,7 @@ In the root directory:
 npm start
 ```
 
-TODO: Docker build currently have issues that need to be resolved.
+TODO: Docker build currently has issues that need to be resolved.
 
 <!-- ## Tests
 ### Frontend:
